@@ -1,0 +1,44 @@
+[1] OSI Model: (Open System Interconnections)
+
+1) Application layer:  (Layer 7)
+* The layer at which the application can use network options.  
+* The data is passed to the Presentation layer.
+
+2) Presentation layer:  (Layer 6) 
+* The data is translated into a specific format, encryption, decryption and compression occurs at this layer.
+
+3) Session layer: (Layer 5)
+* This maintance the session between the two computers.
+* The session created must be unique to communication which is this layer's role.
+* If the connection failed it returns a error.
+
+4) Transport layer:  (Layer 4)
+* It decides the transfer protocol of the data sent whether TCP or UDP.
+* TCP is a reliable transmission as if any packages is failed to deliver then it resends the certain package.
+* UDP just transmits the data after the connection but doesn't bother whether the reciever got all packages. Used in video calls.
+* When the transfer protocol is selected the data is transferred to Network layer.
+
+5) Network layer:  (Layer 3)
+* It utilizes the logical addressing IP address using which it finds the easiest route for data transfer.
+* logical addressing are IPV4 and IPV6 format.
+
+6) Data Link layer:  (Layer 2)
+* It focuses on the physical addressing (MAC address) which is burnt into the hardware that cannot be changed.
+* The packages are received by the devices MAC address which is unique.
+* This layer make sure the data is in suitable format for transmission and checks for corrupted data.
+
+7) Physical layer:  (Layer 1)
+* The layer where the data transmission is through hardware of the computer.
+	
+[2] Encapsulation:
+
+The process of wrapping layer specific information at the head and trail of the data travelling down the OSI layers.
+1) At the application layer the raw data is sent.
+
+2) At the transport layer the header contains the protocol used. The data at this layer is called the segments.
+
+3) At the network layer the header contains the sender and receiver IPs. The data at network layer is called packets.
+
+4) At the datalink layer it contains both header and trailer.  It checks for data corruption and adds an extra security.  The MAC address of source and destination  is added.  The data at the datalink layer is called frames.
+
+5) At the physical layer the frames is converted to bits(electrical signals).
