@@ -1,0 +1,54 @@
+[3] TCP/IP Model: (Transmission Control Protocol/ Internet Protocol)
+TCP is a reliable transmission as if any packages is failed to deliver then it resends the certain package.
+
+1) Application layer: 
+* The application layer is the combination of application, presentation and session layer of the OSI model.
+
+2) Transport layer:
+* The transport layer determines the protocol used as in OSI model.
+
+3) Internet layer:
+* The internet layer is same as the network layer. 
+* It is responsible for routing, logical addressing, packetization and fragmentation.
+
+4) Network Interface layer:
+* The network interface layer is combination of both data link layer and physical layer.
+* It controls MAC addressing to specific NIC(Network Interface Card) , Physical transmission and Error detection.
+
+5) Three-Way Handsake:
+* TCP is a connection based protocol in which the sender sends an syncronize bit(SYN) to the receiver. It requests the receiver for connection.
+* The receiver sends SYN/ACK bit to sender when its accepts the connection request. It also contains the SYN bit by the sender.
+* Then the sender sends an acknowledgement bit(ACK) to the receiver.
+* After the three way handsake the data is sent safely between the connected devices.
+
+[4] DNS(Domain Name System):
+DNS maps the domain name with its server IP.
+
+1) First looks for local DNS cache or "hosts file".
+
+2) If not found requests recursive DNS server. The details of the recursive DNS server is located at the router or the computer. This server contains results of popular domains.
+
+3) If no results found it passes request to root name server.
+
+4) Then the root name server redirects the request to Top Level Domain(TLD) server.
+
+5) The TLD server pass down the request to the Authoritative Name Server. Each domains are stored in the Authoritative Name Server somewhere.
+
+[5] Commands:
+
+1) ping command:
+* ping is a command which is used to check whether a connection to remote computer is possible or not.
+* Syntax: ping <target> [options]
+
+2) traceroute command:
+* It is used to trace the packets to the destination whatever route does the packets take to reach the destination. 
+* It utilizes ICMP(Internet Control Message Protocol) used to report connection issues and transmission errors.
+* Syntax: traceroute <destination> [options]
+
+3) whois lookup:
+* It is used to find information about the domain registration.
+* Syntax: whois <domain>
+
+4) dig command:
+* It is used to retrieve information from the name server.
+* Syntax: dig <domain> @<dns-server-ip>
