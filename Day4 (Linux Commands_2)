@@ -1,0 +1,49 @@
+Level 8-12: man, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+8) man(manual to other cmds) => man [option] [cmd],man [section] [cmd]
+[option] => -f(displays short description with section number), -a(displays
+all sections pagewise), -k(displays all commands inclued with cmd),
+-w(returns location of that manual), -I(ensures the cmd with case sensitivity)
+9) sort(sorts without changing input) => sort [options] [filename]
+[options] => -n(sorts numerically),-r(alphabet reverse),-nr(numerically reverse),
+-k[col](sorts the table based on column col), -M(sorts by months first
+3 letters and unknown strings come before JAN), -o(output stored in file)
+(-o ofile,ifile),-u(removes duplicate lines), -c(checks if sorted already or not)
+10) uniq(displays unique)(only detects successive lines)=> uniq [options] [fn]
+[options] =>-c(displays the count), -d(display repeted line once),
+-D(display occurences of duplicates), -u(display unique line),
+-f [no.](skips no. of columns words and displays unique), -w [no.](the
+comparision is limited to first no.characters of column), -i(case insensitive)
+,-z(null terminated output), -s [no.](skips first no. characters of column)
+11) strings(extacts human readable text that is embedded) =>strings [option] fn
+[options] =>-n [num](default 4)(prints the num character words), -t [format]
+(prints the location of format in physical) (format:octal(o)/decimal(d)
+/hexadecimal(x)), -a(ignores the section of file and scans every byte)
+12) base64(encodes/decodes)=>echo "text" | base64 [options],
+base64 [options] [filename] .[options]=> -d(decode), -i(ignore invalid charac),
+-w [no.](while encoding after 76 characters comes newline, no. decleares when
+there should a newline)
+13) tr(translates based on sets often used with | )=> tr [option] [set1] [set2]
+[options] => -c(converts as set2 element if the element is not in set1),
+-d(deletes set1 from output), -s(replaces consecutive element mentioned in
+set1 as one), -t(truncates the extra set1 character wrt set2), -cs(compliements
+and squash based on the replaced character), -cd(deletes everything except set1)
+[set1] [set2] =>[:lower:] [:upper:], [:space:] "\t", "A-Za-z" "N-ZA-Mn-za-m"
+14) tar(extract,view,create,manage archives)=>tar [options] [fn] [file/directory]
+[options]=> -c(creates), -x(extracts), -f(specifies fn), -v(shows process),
+-t(list files inside), -z(.tar.gz)(gzip), -j(.tar.bz2)(bzip2), -J(.tar.xz)(xz),
+-r(add files to existing tar), -u(update files), -A(combine multiple archives),
+-C(extract to specific directory)   //no compression no size reduction
+15) gzip(archive manupilation) => gzip [options] [filename]
+[options]=>-d(decompress / delete archive),-k(keep files after compression),
+-v(verbose show information during the process),-f(forces and overwrite when
+file already exists)    //compress,high speed,low memory usage
+16) bzip(archive manipulation) => bzip2 [options] [filename]
+[options] => -k(keeps original), -z(forces compression), -d(decompresses),
+-t(integritycheck,checks for corruted without decompressing it),-v(verbose),
+// slower decompression,high memory usage, less storage)
+17) xxd(analyse hexadecimal dumps) => xxd [options] [filename]
+[options]=> -r(reverse back to original), -s [no.](skips no. bytes  from
+start),-l [no.](allows to print no. of bytes), -g [no.](group based on no.),
+-c [no.](limit columns to no.), -b(creates binary dump), -ps(plain hexdump),
+-u(uppercase hexdump).    // if no. is negative displays last no. bits in -s
