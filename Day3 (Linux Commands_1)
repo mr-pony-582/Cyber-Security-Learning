@@ -1,0 +1,33 @@
+Level 1-7: ls , cd , cat , file , du , find , grep
+
+1) ls(list elements) => ls,ls -l, ls -la
+2) cd(change directory) => cd ..,cd -,cd path,cd
+3) cat(open file) => cat filename, cat ./path/"fn"
+4) file(display file format) => file filename,file *
+5) du(disk usage in kb) =>du filename(files alone),du -h fn(size format),
+du -sh fn(fn+size),du -ch fn(folder+size+total),du -ah fn(all file,folder+size)
+6) find(find files) => find [path] [options] [filename or sizes],
+find . -type f -executable(finds executable files in current directory),
+find . -type f ! -executable(finds not executable files)
+[options] => -type f(regular files), -empty(list empty files),
+-name "fn" or "*.format"(all format files with case sensitivity, specific),
+-iname "*.format"(list all format files,case insensitivity),
+-size(particular size bytes), -executable(finds executable),
+-type(type of file)(f - normal file,d - directory and display all,l - symlink),
+-exec(followed by external command)(-exec cmd [options] {} \;)(\; - terminator),
+-perm(specific permission files), -mtime -[days](list modified file within days),
+-maxdepth [depth](searches only for depth level in directories),
+-user [username](searches files owned by username), -or(combining two options),
+-group [groupname](searches files owned by groupname)
+[path] => .(current directory), /(home directory)
+7) grep(matches pattern and display) => grep [options] pattern [files],
+[options] => -i(case insensitive), -c(count),-l(multiple files), -w(whole words),
+-o(matched word alone), -n(sentence with line no), -v(not matching),
+-e(multiple pattern), -f(pattern match with file), -[A/B/C] [no.of.lines] (prints
+no.of.lines after(A) match/before(B) match/both(C)), -f(followed by pattern file)
+pattern => "^pattern"(display when first word) , "pattern$"(end word)
+pattern file => each line can have one keyword to search
+
+Commands:
+# 2>/dev/null(2 is the error > redirects the noise to /dev/null which is a void)
+# command1 | command2(the output of command1 is taken as input of command2)
