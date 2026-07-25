@@ -33,7 +33,7 @@ Protocols:
 * SMTP/IMAP: Handles sending and retrieving emails.
 * DNS: Translates domains into IP adresses.
 * DHCP: Automatically assigns IP addresses, subnet masks, and default gateways to devices.
-* SNMP: Used to monitor, manage and configure network devices like routers,etc.
+* SNMP: Used to monitor, manage and configure network devices like routers, etc.
 
 layer-6: Presentation layer(data)
 SSL - Secure Sockets Layer
