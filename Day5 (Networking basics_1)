@@ -1,0 +1,103 @@
+1) Network:
+* Interconnected devices communicate and share data with each other.
+
+2) Hub:(layer 1)(raw bits)
+* It just broadcasts the data with connected device in the local network.
+* It does not store any address and has no storage.
+
+3) Switch:(layer 2)(frames)
+* It sends data to the destination via MAC address within the local network.
+* It stores the MAC address in the CAM(Content Addressable Memory) table.
+* When pinged another device via IP address it sends arp(Address Resolution Protocol) request.
+* arp request is send to connected devices and the specific IP device returns a direct message and the MAC address is stored.
+
+4) Router:(layer 3)(packets)
+* It works by logical addressing(IPs).
+* Used to connect different networks.
+
+5) OSI:
+layer-7: Application layer(data)
+HTTP - Hypertext Transfer Protocol
+HTTPS - Hypertext Transfer Protocol Secure
+FTP - File Transfer Protocol
+DNS - Domain Name System
+SMTP - Simple Mail Transfer Protocol
+IMAP - Internet Message Access Protocol
+Protocols:
+* HTTP/HTTPS: Allows web browsing securely.
+* FTP: Transfer files between local computer and remote server.
+* SMTP/IMAP: Handles sending and retrieving emails.
+* DNS: Translates domains into IP adresses.
+
+layer-6: Presentation layer(data)
+SSL - Secure Sockets Layer
+TLS - Transport Layer Security
+SSH - Secure Shell(Secure Socket Shell)
+Protocols:
+* SSL/TLS: Secure web traffic by encrypting data before transmission.
+* SSH: Provides secure, encrypted remote access to computer systems.
+
+layer-5: Session layer(data)
+NetBIOS - Network Basic Input/Output System
+RPC - Remote Procedure Call
+PPTP - Point-to-Point Tunneling Protocol
+PAP - Password Authentication Protocol
+Protocols:
+* NetBIOS: Provides services(sessions) for applications on different computers to communicate over a local area network(LAN).
+* RPC: Allows a program on one computer to execute code on a different computer without the programmer needing to explicitly code the network details.
+* PPTP: An older method used to create secure Virtual Private Network (VPN) tunnels over the internet.
+* PAP: A simple, plain-text routing protocol used to validate user credentials before letting them access a network.
+
+layer-4: Transport layer(segment/datagrams)
+TCP - Transmission Control Protocol
+UDP - User Datagram Protocol
+Protocols:
+* TCP: TCP is a reliable transmission as if any packages is failed to deliver then it resends the certain package.
+* UDP: UDP just transmits the data after the connection but doesn't bother whether the reciever got all packages.
+
+layer-3: Network layer(packets)
+OSPF - Open Shortest Path First
+BGP - Border Gateway Protocol
+RIP - Routing Information Protocol
+ICMP - Internet Control Message Protocol
+IGMP - Internet Group Management Protocol
+Protocols:
+* IPv4: Uses 32 bit addresses to route data packets.
+* IPv6: Uses 128 bit addresses to provide unique id addresses and replace IPv4.
+* OSPF: Finds the fastest path within a single corporate or campus network.
+* BGP: Manages  data routing between different internet service providers across the global internet.
+* RIP: Old simpler protocol that counts the number of routers to find a path.
+* ICMP: Sends error messages and operational data used by ping command.
+* IPsec: Secures IP communications by encrypting and authenticating data packets.
+* IGMP: Instead of unicast or broadcast, the network layer uses IGMP to send just one stream of data that only goes to the devices that explicitly asked for it.(multicast)
+
+layer-2: Data link layer(frames)
+PPP - Point-to-Point Protocol
+HDLC - High-Level Data Link Control
+ARP - Address Resolution Protocol
+STP - Spanning Tree Protocol
+L2TP - Layer 2 Tunneling Protocol
+Protocols:
+* Ethernet(IEEE 802.3): Used to transmit data frames for wired local area networks(LANs).
+* Wi-Fi(IEEE 802.11): Used to transmit data frames over radio waves.
+* PPP: Used to establish a direct connection between two nodes.
+* HDLC: A synchronous, bit-oriented protocol used to transmit data over point-to-point leased lines in WANs.
+* ARP: Translates known layer 3 IP address into a local layer 2 MAC address.
+* STP: A management protocol that prevents network killing broadcast loops.
+* L2TP: Used by ISPs and VPNs to tunnel and support virtual private network connections.
+
+layer-1: Physical layer(bits)
+DSL - Digital Subscriber Line
+USB - Universal Serial Bus
+SONET/SDH - Synchronous Optical Networking
+OTN - Optical Transport Network
+Standards:
+* Wi-Fi Physical Layer: Handles radio frequency modulation to send bits through the air.
+* Bluetooth Physical Layer: Uses short-range radio frequencies.
+* Cellular Physical Layer: Manages advanced radio wave modulation techniques for mobile tower connections.
+* Ethernet Physical Layer: Copper twisted-pair cables.
+* Fiber Optic Standards: 
+* DSL: Uses traditional telephone copper lines to transmit high frequency digital data.
+* USB: Defines peripheral device connections.
+* SONET/SDH: Standard for high-speed laser data transmission over long-distance fiber-optic networks.
+* OTN: Modern framework used by internet providers to route massive amounts of data over fiber globally.
