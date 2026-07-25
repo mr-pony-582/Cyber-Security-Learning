@@ -20,14 +20,20 @@ layer-7: Application layer(data)
 HTTP - Hypertext Transfer Protocol
 HTTPS - Hypertext Transfer Protocol Secure
 FTP - File Transfer Protocol
+TFTP - Trival File Transfer Protocol
 DNS - Domain Name System
 SMTP - Simple Mail Transfer Protocol
 IMAP - Internet Message Access Protocol
+DHCP - Dynamic Host Configuration Protocol
+SNMP - Simple Network Management Protocol
 Protocols:
 * HTTP/HTTPS: Allows web browsing securely.
 * FTP: Transfer files between local computer and remote server.
+* TFTP: Simple, lightweight protocol to transfer files between network devices.
 * SMTP/IMAP: Handles sending and retrieving emails.
 * DNS: Translates domains into IP adresses.
+* DHCP: Automatically assigns IP addresses, subnet masks, and default gateways to devices.
+* SNMP: Used to monitor, manage and configure network devices like routers,etc.
 
 layer-6: Presentation layer(data)
 SSL - Secure Sockets Layer
