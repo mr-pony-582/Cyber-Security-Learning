@@ -1,0 +1,80 @@
+1) HTTP - stateless, Request-Response protocol, plain text
+Client Request:
+* GET - Retrieves data from server
+* POST - Sends data to update or create a resource
+* PUT - Replaces an entire resource in server
+* DELETE - Removes a resource from server
+* OPTIONS - Asks the server which HTTP methods are allowed for specific URL
+* HEAD - Identical to GET only return the header not body
+Server's Reply:
+* 2XX(Success) - 200 OK = successful, 201 Created = new resource created successfully
+* 3XX(Redirection) - 301 Moved Permanently = Resource has new URL, 302 Found = Temporary Redirect
+* 4XX(Client Error) - 400 Bad Request = The server couldn't understand your request, 401 Unauthorized = Authentication is required, 403 Forbidden = Authenticated but don't have access permission to access the resources, 404 Not Found = Resource doesn't exist.
+* 5XX(Server Error) - 500 Internal Server = Server crashed when processing your request, 502 Bad Gateway = Invalid Response from the backend, 503 Service Unavailable = Server is overload or under maintenance
+Exploit:
+* If the server's access controls is misconfigured, attackers use Burp Suite to change GET request to PUT request
+2) HTTPS - TLS handshake before data is send, certificate verification and Encrypted Communication - all request and reply are encrypted
+Exploit:
+* SSL Stripping - If website supports HTTP and HTTPS attacker intercept the connection and downgrades to HTTP results in no padlock in victim browser.
+Defender:
+* HSTS(HTTP Strict Transport Security) - forces browser to HTTPS
+
+3) FTP(File Transfer Protocol) - designed for uploading and downloading files between client and a server
+* port 21 Control Channel(used to send commands), port 20 Data Channel(used to transfer files)
+* uses plain text authentication, Plain text data and Two port complexity(nightmare to configure through firewall)
+Exploit:
+* FTP Credential Harvesting - attackers sniff plaintext credentials on network
+Prevention:
+* FTPS(FTP Secure) - FTP wrapped in TLS/SSL encryption
+4) SMB(Server Message Block) - Windows File Sharing Protocol - works on port 445 over TCP and on port 139 over NetBIOS
+* allows users to access files, printers and serial ports on remote computers
+Exploit:
+* Lateral Movement - When a single system is compromised in a network they use SMB to access shared folders, to login other machines moving laterally between network.
+* EternalBlue and WannaCry - exploited SMBv1 enabled attackers to execute arbitrary code on unpatched Windows machine without credentials itself.
+* NTLM Relay Attacks - Windows automatically sends the credentials in form of NTLM hashes to authenticate, attackers uses "Responder" to send that NTLM hashes to them and crack that hash offline.
+Prevention:
+* Disable SMBv1 use SMBv2 or SMBv3
+* Block port 445 to public internet.
+* Enable SMB Signaling - digitally signs every SMB packet to prevent MITM attacks
+* Provide least privilege on shared folders
+
+5) SMTP(Simple Mail Transfer Protocol) - push protocol
+* port 25(Server-to-Server relay), port 587(Client-to-Server Submission with encryption), port 465(Legacy SMTPS)
+Steps:
+* Email sent to organization's STMP server - fetch reciptant domain - quires DNS for Mail Exchange(MX) records - relays the message to Google's SMTP server
+Flaws: 
+* No built in mechanism to verify "From" address
+* If the STMP server is misconfigured as open relay, it will accept and send mails from anyone on the internet leading to blacklist of the server.
+6) POP3 (Post Office Protocol version 3)
+* retrieves message to local and deletes in server.
+* only the first accessed device does have the message.
+* No sync exists - Port 110 (unencrypted) and port 995 (Encrypted via SSL/TLS)
+7) IMAP (Internet Message Access Protocol)
+* retrieves message to local and exists in server as read.
+* multiple devices have the message by sync exists between devices
+* Port 143 (unencrypted) , Port 993(encrypted via SSL/TLS)
+Exploit:
+* attackers uses Wireshark on local network to sniff on port 110 and 143
+Prevention:
+* can be prevented by forcing port 995 and 993 rather than 110 and 143
+
+8) LDAP (Lightweight Directory Access Protocol)
+directory service - database that stores and manage network users, devices and resources - In windows Active Directory(AD) database and LDAP is the language to communicate
+* used to read and modify directory service - Port 389 (unencrypted) and port 636 (Encrypted via LDAPS)
+* data is stored in hierarchical tree structure - folders = OUs(Organizational Units) - files = Objects(have unique name called Distinguished Name(DN))
+Exploit:
+* LDAP injection - hacker target AD with unsanitised user input to bypass authentication
+* If machine compromised within corporation network, attackers query LDAP to perform LDAP enumeration to map entire organization without admin privileges.
+* Attacker can extract complete list of usernames - password policies - organizational structure
+9) Kerberos - Port 88 (TCP and UDP) - Authenticator 
+NTLM - older Windows Authentication protocol for active directory(AD), sends password hashes back and forth on the network to authenticate which can be intercepted and cracked.
+* Kerberos is complex and highly secure protocol that relays on tickets and asymmetric cryptography.
+Methods:
+* AS-REQ/AS-REP: KDC(Key Distribution Centre) authenticates user using password hash. KDC verifies and issues TGT(Ticket Granting Ticket) which is encrypted with secret key known only by KDC.
+* TGS-REQ/TGS-REP: If user needs specific service, they present the TGT, KDC validates and issues ST(Service Ticket) to that particular service.
+* AP-REQ/AP-REP: User presents the Service Ticket to target server and the server decrypts, verifies user and grant access.
+Exploit:
+service accounts - service accounts in Access Directory is a non-human account created to run background applications, services or scripts.
+* Kerberoasting - Every service has service accounts, when attacker request server ticket KDC generates ticket and encrypts it using NTLM password hash of the the service account, the attacker cracks it offline.
+Prevention:
+* service accounts must have complex, randomly generated passwords(25+ characters)
