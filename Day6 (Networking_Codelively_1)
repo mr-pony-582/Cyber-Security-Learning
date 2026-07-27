@@ -1,0 +1,79 @@
+1) Network:
+LAN(Local Area Network) - Intranet - Private
+WAN(Wide Area Network) - Internet + ISP - Public
+2) Network Architecture:
+* Client-Server Model
+* Peer-to-Peer (P2P) Model
+3) Tunneling or Encapsulation Evasion:
+* Each layer accepts the payload from the layer above it blindly.
+4) PDU(Protocol Data Units):
+* Application layer - data
+* Transport layer - segments or datagrams
+* Internet layer - packets
+* Network Access layer - Frames and bits
+5) MAC Address:
+* 48 bit colon separated value - 24 bit OUI and 24 bit NIC specific
+OUI(Organizationally Unique Identifier) - identify manufacturer
+NIC(Network Interface Card) - Unique serial number
+6) ARP protocol - Layer 2:(Address Resolution Protocol)
+* bridges gap between layer 3 IP and layer two MAC addresses.
+* ARP Request - Broadcast, ARP Reply - Unicast, ARP Cache - Stores data
+Exploit:
+ARP Poisoning or ARP Spoofing - MITM attack - Sending fake ARP Reply to the victim.
+Prevention:
+To defend ARP Spoofing - use DAI(Dynamic ARP Inspector) on switch to prevent MITM(Man-In-The-Middle) - matches MAC address from the port to which ARP Request is send.
+
+7) IPv4 - 32 bit doted decimals - Eg: 192.168.1.10 - each section can contain 8 bit of 1s or 0s.
+* Each part can be from 0 to 255
+* Network Portion - part that describes specific network
+* Host Portion - part that describes the specific host device
+8) Subnetting:(Divide and Conquer)
+* The process of dividing large network into manageable and secure subnets.
+* Subnetting allows segmentation which makes the attacker within a network "blast radius"
+* Subnet Mask - acts as a filter - Eg: 255.255.255.0 where 255 represents Network Portion and 0 represents
+Host Portion
+* For a device to talk to other device within the same network does not require router while communicating external network requires the router's default gateway
+* CIDR(Classless Inter-Domain Routing) - shorthand of counts of 1s in a subnet's network portion - 
+Eg: 192.168.1.0/24 means the network part is composed of 24 1s and remaining 8 bits can be used for host part.
+9) Public IP: 
+* globally unique - routable on Open internet - leased from ISP or cloud provider.
+10) Private IP: 
+* Reserved for internal use - not routable on public internet - cannot access public website directly.
+* 10.0.0.0 to 10.255.255.255 - Massive enterprise networks
+* 172.16.0.0 to 172.31.255.255 - Medium sized networks
+* 192.168.0.0 to 192.168.255.255 - Home routers and small offices
+11) NAT(Network Address Translation):
+* router has public IP and end user has private IP
+* when end user want to access public internet it uses private IP by router
+
+12) IPv6 - 64 bit hexadecimal separated by colons
+Difference: 
+* No Broadcast < Multicast and Anycast  
+* Simplified Header - fast routing process
+* SLAAC(Stateless Address Autoconfiguration) - devices itself generate IPv6 based on router's prefix and MAC address.
+Exploit: 
+* IPv6 Tunneling - Firewall haven't configured to inspect IPv6 - encapsulate IPv4 inside IPv6
+13) ICMP(Internet Control Message Protocol):
+* caries control, diagnostic and error messages
+* Destination unreachable(Type 3) - when not available in routing table or blocked by local firewall
+* Time Exceeded(Type 11) - IP packets whose TTL(Time to Live) reduces by 1 for every hop(when reaches next router) when it reaches 0 it sends this ICMP message.
+14) Ping - measure RTT(Round Trip Time) - gives latency of the network
+* uses Echo request(Type 8) and Echo Reply(Type 0) 
+* Request Timed out - server is offline or firewall hide server existence when pinged
+
+15) Traceroute - maps all router till the target server
+* abuses TTL and ICMP Time exceeded error and is not blocked by firewall as ICMP is used for diagnostics.
+* First send packet with TTL of 1 then the ICMP is created and send back to client then the IP of the router is mapped and sends packet incremented TTL - Finally when destination reached sends ICMP Port Unreachable 
+Weaponizing ICMP:
+* ICMP Reconnaissance - Performing "ping sweep" which sends echo requests to every IPs in subnets and narrows down target by reply.
+* ICMP Tunneling - In compromised machine "ptunnel" to encapsulate malicious code within ICMP echo request which received by external server and extracts the code and returns output in ICMP echo reply.
+* ICMP Flood - Overwhelm a target by sending a massive ICMP echo requests and waste the target system's CPU and bandwidth to generate echo reply freezing the system. 
+16) Ports - 16 bit numbers from 0 to 65535 - used for routing data internally.
+* Port Multiplexing - single IP can make multiple conversation
+* 0 - 1023 Standard system services, 1024 - 49151 Specific applications, 49152 - 65535 Ephemeral ports
+17) TCP/IP - 3-Way Handshake(SYN,SYN-ACK,ACK) - Sequencing, Acknowledgements and Retransmissions
+* "Stateful Firewalls" - keeps track of ACK that is it sent from the same SYN requested device
+18) UDP - no handshakes, no acknowledgements and no sequencing
+* unreliable but fast than TCP/IP
+Exploit:
+* UDP Reflection/Amplification Attack - flooding UDP requests to take down websites via DDOS(Distributed Denial of Service).
