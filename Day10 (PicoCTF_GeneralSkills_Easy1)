@@ -1,0 +1,73 @@
+1. Undo 
+    
+    - Can you reverse a series of Linux text transformations to recover the original flag? 
+    - Hint Base64 encoded the string. 
+    
+    Approach: 
+    
+    - What is base64?
+        - base64 string is a sequence of text characters used to represent binary data.
+        - Contains 64 character set (a-z), (A-Z), (0-9) and (+ and / ). 24 bits data(8 + 8 +8)
+        - = is used at end of string for padding if the leftover bits is 8 then == is used to fill remaining space and for 16 bits leftover = is used to fill remaining space
+        - For input each character is 8 bit in the conversion for output each character is 6 bit that is converted to decimal value and directly maps to the base64 character set.
+    - For decoding a base64 string linux command
+        - base64 -d
+    - For reversing a string
+        - rev
+    - For translating from ‘-’ to ‘_’ and ‘()’ to ‘{}’
+        - tr “-” “_”
+        - tr “()” “{}”
+    - What is ROT13?
+        - It shifts alphabetic characters (A-Z) and (a-z) forward or backward by 13 positions.
+        - Spaces, numbers and punctuation marks remain completely unchanged
+        - “A-M” and “a-m” are replaced by “N-Z” and “n-z” and vice versa
+    - How to reverse ROT13
+        - tr “A-Za-z” “N-ZA-Mn-za-m”
+2. MY GIT
+    
+    - I have built my own Git server with my own rules!
+    
+    -Check the README to get your flag!
+    
+    Approach:
+    
+    - git clone ssh://git@foggy-cliff.picoctf.net:59215/git/challenge.git creates a copy of the Git repository in the local computer.
+    - finding README
+        - cd challenge
+        - cat README.md
+        - Only flag.txt pushed by `root:root@picoctf` will be updated with the flag.
+    - what are the git commands?
+        - git config —global user.name “Username” (sets display name)
+        - git config —global user.email “email Id” (sets contact email)
+        - git init (creates a new empty repository)
+        - git clone <url> (downloads an existing project from remote server to your machine)
+        - git status (shows files that are created, deleted and modified)
+        - git add <file> (Stages the file that is going to be commited)
+        - git commit -m “Description” (Permanently saves changes to local repository with a comment)
+        - git push origin master (Sends local commits to the remote server that you connected to master directory)
+        - git log (Lists all past commits in reverse chronological order)
+    - commands used
+        - touch flag.txt
+        - nano flag.txt
+        - git config —global user.name “root”
+        - git config —global user.email “root@picoctf”
+        - git add flag.txt
+        - git commit -m “Give flag”
+        - git push origin master
+3. bytemancy 1 
+    
+    -Can you conjure the right bytes?
+    
+    user_input = input('==> ')
+    if user_input == "\x65"*1751:
+    print(open("./flag.txt", "r").read())
+    
+    Approach:
+    
+    - The user input must match ”\x65”*1751” so the flag.txt reveals the flag.
+    - \x65 in python takes the two digits(65) as hexadecimal and converts into decimal then to ASCII character ‘e’
+    - the character 1751 times ‘e’ should be given so that the program will return flag
+    - How to send multiple character input without typing all the words?
+        - python -c "print('e' * 1751)" | script.py
+        - the -c executes the code within “” and | passes the output to the script.py input
+    - python -c “print(’e’ * 1751)” | <netcat link>
