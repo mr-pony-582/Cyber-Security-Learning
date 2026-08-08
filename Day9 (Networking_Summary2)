@@ -1,0 +1,62 @@
+Protocols:
+
+Layer 2
+
+- DOCSIS(Data Over Cable Service Interface Specification) - high speed internet data transfer over existing coaxial cable television and hybrid fiber coaxial network - connects a home modem to Cable Modem Termination System(CTMS) at ISP site
+- ARP(Address Resolution Protocol) - ARP request (Broadcasts to find the owner of the IP address) - ARP reply (The matched device sends direct message with its MAC address - ARP cache (The devices saves in temporary lists)
+- STP(Spanning Tree Protocol) - Prevents data loops by calculating the best paths and blocking redundant links - when a link changes takes 50 seconds as recovery time
+- RSTP(Rapid Spanning Tree Protocol) - recovery time is reduced to milliseconds
+- VLAN(Virtual Local Area Network) - logical tool to split single physical network switch into separate virtual networks
+- LACP(Link Aggregation Control Protocol) - combines multiple physical network into single virtual link features active and passive mode - increased bandwidth and automatic failover
+
+Layer 3
+
+- OSPF(Open Shortest Path First) - routing protocol - find the best path for data
+- RIP(Routing Information Protocol) - older routing protocol - uses hop count to find the best path - sets 16 hops as unreachable
+- BGP(Border Gateway Protocol) - routing protocol to exchange information between independent networks
+- ICMP(Internet Control Message Protocol) - Error reporting - Type 0 and 8 Echo reply and echo request for ping - Type 3 if destination unreachable - Type 11 if TTL counter hits zero
+- NAT(Network Address Translation) - used by routers - local private network devices share a single public IP address to reach internet
+- DHCP(Dynamic Host Configuration Protocol) - Uses DORA(Discover, Offer, Request and Acknowledge) - auto assigns IP addresses, subnet masks and default gateways devices as they connect to network
+
+Layer 4 
+
+- TCP - Three way handshake (SYN, SYN-ACK, ACK) - sequencing. acknowledgements and retransmission - slow compared to UDP - reliable transmission
+- UDP - No handshake, no acknowledgement and no sequencing - fast compared to TCP - data packets may loss
+
+Layer 7
+
+- HTTP/HTTPS - GET, POST, PUT, DELETE, OPTIONS and HEAD - 200 OK, 201 Created, 301 Permanently Moved, 302 Found, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server, 502 Bad Gateway and 503 Server Unavailable - port 80(HTTP) and port 443(HTTPS)
+- FTP/FTPS(File Transfer Protocol) - port 20 data channel and port 21 control channel - plain text authentication - uploading and downloading files between client and server
+- SMB(Server Message Block) - Windows file sharing protocol - port 445 over TCP and port 139 over NetBIOS
+- SMTP(Simple Mail Transport Protocol) - used to send or push mail to organization - port 25(Server-to-server relay), port 465(Legacy SMTP) and port 587 (Client-to-Server submission with encryption)
+- POP3(Post Office Protocol version 3) - retreives message from server to local and deletes in server - port 110 unencrypted and port 995 encrypted
+- IMAP(Internet Message Access Protocol) - retreives message from server to local and retains in server - port 143 unencrypted and port 993 encrypted
+- LDAP(Lightweight Directory Access Protocol) - used to read and modify directory service(database that stores and manages network users) - port 389(unencrypted) and port 636(encrypted)
+- Kerberos - port 88(TCP and UDP) - complex, highly secure - uses symmetric cryptography by KDC(Key Distribution Centre) - KDC authenticates user with password hash and provides TGT(Ticket Granting Ticket) encrypted with secret key known by KDC - when specific service is needed it shows the TGT to KDC and gets the service ticket - shows service ticket to target server and server decrypts, verify and grant access
+- Telnet - port 23(TCP) - simple, plaintext connection to remote device - command line interface
+- SSH(Secure Shell) - port 22(TCP) - command line interface - asymmetric cryptography - input, output and file transfer are encrypted
+- RDP(Remote Desktop Protocol) - port 3389(TCP/UDP) - GUI interface
+- SNMP(Simple Network Management Protocol) - allows central server to check health, status and configuration of network devices - port 161(UDP) for queries and port 162(UDP) for “Traps” alerts from device to server
+- NTP(Network Time Protocol) - port 123(UDP) - sync all clocks of network devices to single and accurate - “monlist”
+
+Wireless Standards:
+
+- 802.11b (Wi-Fi 1) - 2.4 GHz - 11 Mbps
+- 802.11a (Wi-Fi 2) - 5 GHz - 54 Mbps
+- 802.11g (Wi-Fi 3) - 2.4 GHz - 54 Mbps
+- 802.11n (Wi-Fi 4) - 2.4 and 5 GHz - 600 Mbps
+- 802.11ac (Wi-Fi 5) - 5 GHz - 7 Gbps
+- 802.11ax (Wi-Fi 6) - 2.4, 5 and 6 GHz - 9.6 Gbps
+- 802.11be (Wi-Fi 7) - 2.4, 5, 6 GHz - 46 Gbps
+
+Wireless Configuration:
+
+- SSID(Service Set Identifier) - name of wireless network
+- Wireless Mode - Auto supports mixed device types
+- Channel Bandwidth - Can be 20/40/80 MHz or Auto
+- Channel Selection - each channel 20 MHz chooses a channel to travel (commonly 11 to 13 channels)
+- Security Protocols - WPA2-Enterprise(RADIUS server and vulnerable handshakes) or WPA3(PMF Protected Management Frames and SAE Simultaneous Authentication of Equals)
+
+Proxy Server - gateway between devices and internet - provides the proxy server’s IP for accessing public network - sends traffic in proxy server - forward and reverse proxy server - checks the traffic
+
+SOCKS Server - intermediate between the device and a destination - swaps IP - routes anything - game and torrent - does not checks the traffic
