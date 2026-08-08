@@ -1,0 +1,56 @@
+Network(Geographic types):
+
+- PAN - connect devices upto 10 meters - uses Bluetooth, USB and Ethernet cables - smart phones, laptops and headphones.
+- LAN -  limited area like home, office or building - Ethernet cable and Wi-Fi - Client server, peer to peer.
+- CAN - connects LANs within a campus - Ethernet cable and optical fibers.
+- MAN - connects networks within a city range - Optical fibers and radio waves.
+- WAN -  covers large geographical area consisting of multiple networks - Optical fibers and copper lines.
+
+Network(Use case):
+
+- Private Network - isolated from public network - uses router(NAT) to access internet- 10.0.0.0 to 10.255.255.255 large enterprises - 172.16.0.0 to 172.31.255.255 medium organizations - 192.168.0.0 to 192.168.255.255 small networks and houses.
+- Public Network - globally interconnected system - open and accessible to anyone with an ISP and a connected device - globally unique, public IP addresses for routing
+- Virtual Private Network - creates a secure, encrypted connection called a "tunnel" over a public network - Encapsulation, Tunneling and Decryption - Remote Access VPN, Site-to-Site VPN, Client Based VPN and Client-less VPN.
+
+VPN Protocols:
+
+- IPsec - High security AH(cryptographic hash covers parts of IP packet) and ESP(encrypts packet data) - complex configuration
+- SSTP(Secure Socket Tunneling Protocol) - SSL/TLS encryption - uses HTTPS port which by bypass firewalls - proprietary to Microsoft - Limited to Windows OS
+- WireGuard - simple and fast - easy to use - static IP to clients and cryptographic keys - lightweight - uses UDP - can run on embedded systems - static IP raise privacy concerns
+- OpenVPN - SSL/TLS encryption - TCP or UDP - bypass firewalls - difficult to set up and configure - natively not supported by many OS
+- SoftEther - bypass firewall - strong encryption - effective in restricted networks - less known - supports various protocols
+- PPTP(Point to Point Tunneling Protocol) - Fast and easy set up - wide compatible - outdated encryption - known security vulnerabilities
+- L2TP/IPsec(Layer 2 Tunneling Protocol) - Tunneling protocol - easy to use - slow due to double encapsulation - difficult to traverse firewall
+
+Network Topology:
+
+- Star - All endpoints to central node - easy troubleshoot - easy isolation - highly scalable - single point of failure at central node
+- Bus - end devices attach to linear shared backbone cable terminated at both ends - Minimal cable - network break at single backbone failure
+- Ring - each device to two neighbour - circular loop - no data collisions - adding or removing a device disrupts traffic
+- Mesh - Redundant links connect nodes - full or partial mesh - maximum fault tolerance - network is up when one link fails - expensive - difficult configuration
+- Tree - Root node to first level star switch to branch out secondary star nodes - highly structured - easy to manage - easy isolation - depends on root node and high level distribution switches
+
+Cable Types:
+
+- Twisted-Pair - short to medium distance - low cost, flexible and easy to install - ethernet and analog telephone lines
+    - UTP(Unshielded Twisted Pair) - Colour coded copper pairs
+    - STP(Shielded Twisted Pair) - foil or braided wrapping around wire pairs - block electrical noise and interference
+- Coaxial - central copper conductor - wrapped plastic insulator - metallic shield - high frequency and  long distance - Ethernet and cable TV delivery
+- Fiber Optic - immune to Electromagnetic interference - extreme bandwidth
+    - Single-Mode fiber - tiny glass core - long distance - data as laser light
+    - Multi-Mode fiber - larger core - short distance - LED light source
+
+Network Devices:
+
+- Hub(layer 1) - broadcasts - no config
+- Repeater(layer 1) - Boosts/regenerate weak signals - no config
+- Modem(layer 1) - digital to analog and vice versa to connect with ISP - ISP Credentials and connection type
+- NIC(layer 1/2) - let device connect to network with MAC address - MAC, IP config
+- Access Point(layer 2) - wireless devices to wired LAN - SSID, security key, channel, encryption mode
+- Switch(layer 2) - uses CAM to forward frames to intended port - Port config, VLANs, trunking, STP settings
+- Bridge(layer 2) - connects two networks and filters traffic - MAC filtering rules, STP setup
+- Multilayer switch(layer 2 & 3) - can forward based on IP and MAC address - VLAN, inter-VLAN routing, IP routing tables
+- Brouter(layer 2 & 3) - bridges different network and routes data - bridging rules and routing tables
+- Router(layer 3) - Routes packets between different networks - IP addressing, routing tables/protocols, NAT, DHCP
+- Firewall(layer 3,4,7) - Filters traffic by security rules - Access rules, port blocking, NAT, logging
+- Gateway(all layers) - Translates between different network protocols or architecture - Protocol translation rules, addressing
